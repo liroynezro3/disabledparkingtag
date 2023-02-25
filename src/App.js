@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
+import { Route, Routes, Link } from "react-router-dom";
+import { Disabledparking } from "./components/Disabledparking";
+import React, { useState } from "react";
 function App() {
+  const [toggle, setToggle] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <div className="moveOn">
+        {!toggle ? (
+          <h1>Click Here to go cheack Disabled Parking</h1>
+        ) : (
+          <h1>Click Here to toggle Disabled Parking</h1>
+        )}
+        {!toggle ? (
+          <Link to={"/Disabledparking"} className="link" onClick={()=>{setToggle(!toggle)}}>
+            link to tags
+          </Link>
+        ) : (
+          <Link to={"/"} className="link" onClick={()=>{setToggle(!toggle)}}>
+            link to back
+          </Link>
+        )}
+      </div>
+      <Routes>
+        <Route path={"/Disabledparking"} element={<Disabledparking />}></Route>
+      </Routes>
+    </React.Fragment>
   );
 }
 
